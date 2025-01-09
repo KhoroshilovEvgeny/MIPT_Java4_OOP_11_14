@@ -8,4 +8,16 @@ public class Utils {
         }
         return  str;
     }
+
+    // метод для вычисления наибольшего общего делителя (НОД или Greatest Common Divisor
+    public static int gcd(int a, int b) {
+        int t;
+        while (b != 0) {
+            t = b;
+            b = a % b;
+            a = t;
+        }
+        return a;
+    }
+
 }

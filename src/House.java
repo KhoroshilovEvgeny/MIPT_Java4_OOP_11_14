@@ -2,6 +2,10 @@ public class House {
     final int floor;
 
     public House(int floor) {
+        if (floor < 1) {
+            throw new IllegalArgumentException("Количество этажей в создаваемом доме должно быть положительным числом,"
+            + " т.е. больше нуля. При создании данного дома было указано число этажей: " + floor);
+        }
         this.floor = floor;
     }
 

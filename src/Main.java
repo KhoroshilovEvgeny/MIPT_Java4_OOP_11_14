@@ -339,7 +339,7 @@ public class Main {
             чтобы имея ссылку на сотрудника, можно было бы узнать список всех сотрудников этого отдела.
          */
 
-       // В класс Department добавлено поле-массив Employee [] employees для хранения списка сотрудников отдела;
+        // В класс Department добавлено поле-массив Employee [] employees для хранения списка сотрудников отдела;
 
         // -------------------- Задачи из блока 1.4 "Конструкторы" ----------------------------
 
@@ -768,7 +768,7 @@ public class Main {
         System.out.println("Вторая линия " + line1662);
         point1661 = new Point(5,6);
         System.out.println("Изменил координаты точки, которая служила началом обоих линий. Линии не изменил," +
-                        "благодаря защитному копированию");
+                "благодаря защитному копированию");
         System.out.println("Первая линия " + line1661);
         System.out.println("Вторая линия " + line1662);
         line1661.setPoint1(5,6);
@@ -882,9 +882,112 @@ public class Main {
         System.out.println(dep10);
         System.out.println(dep11);
 
+        /*
+        1.6.10 Начальник отдела
+         */
+        System.out.println("\nТестирование      1.6.10 Начальник отдела");
+        System.out.println("---------------------------------------------");
+        System.out.println("Кейс №1 - приняли сотрудника (Стоянов) в Департамент информационной безопасности обычным"
+                + " сотрудником, а  затем сделали начальником другого вновь созданного отдела"
+                + "(Департамент импортозамещения)");
+        Department dep7 = new Department("Департамент информационной безопасности");
+        Employee employee72 = new Employee("Стоянов", dep7);
+        Department dep4 = new Department("Департамент импортозамещения", employee72);
+        System.out.println(employee72);
+
+        System.out.println("\nв отделе " + dep7.getNameDepartment() + " работают следующие сотрудники: ");
+        System.out.println(dep7.getEmployees());
+
+        System.out.println("\nв отделе " + dep4.getNameDepartment() + " работают следующие сотрудники: ");
+        System.out.println(dep4.getEmployees());
+
+
+        System.out.println("---------------------------------------------");
+        System.out.println("Кейс №2 - приняли сотрудника (Учускин) в Департамент информационной безопасности "
+                + " сотрудником, а  затем сделали начальником этого же отдела "
+                + "(Департамент информационной безопасности)");
+
+        Employee employee73 = new Employee("Учускин", dep7);
+        System.out.println(employee73);
+
+        dep7.setHead(employee73);
+        System.out.println(employee73);
+
+        System.out.println("\nв отделе " + dep7.getNameDepartment() + " работают следующие сотрудники: ");
+        System.out.println(dep7.getEmployees());
+
+        System.out.println("\nв отделе " + dep4.getNameDepartment() + " работают следующие сотрудники: ");
+        System.out.println(dep4.getEmployees());
+
+
+        System.out.println("---------------------------------------------");
+        System.out.println("Кейс №3 - приняли сотрудника (Холодков) в Департамент информационной безопасности "
+                + " сотрудником, а  затем сделали начальником этого же отдела "
+                + "\n(Департамент информационной безопасности) при этом Учускин (бывший руководитель) "
+                + "остался по умолчанию рядовым сотрудником в Департамент информационной безопасности ");
+
+
+        Employee employee74 = new Employee("Холодков", dep7);
+        dep7.setHead(employee74);
+
+
+        System.out.println(employee73);
+        System.out.println(employee74);
+
+        System.out.println("\nв отделе " + dep7.getNameDepartment() + " работают следующие сотрудники: ");
+        System.out.println(dep7.getEmployees());
+
+        System.out.println("\nв отделе " + dep4.getNameDepartment() + " работают следующие сотрудники: ");
+        System.out.println(dep4.getEmployees());
+
+
+        System.out.println("---------------------------------------------");
+        System.out.println("Кейс №4 - Холодков начальник Департамента информационной безопасности "
+                + " перевели в Департамент импортозамещения рядовым сотрудником");
+
+        employee74.setDepartment(dep4);
+        System.out.println(employee74);
+
+        System.out.println("\nв отделе " + dep7.getNameDepartment() + " работают следующие сотрудники: ");
+        System.out.println(dep7.getEmployees());
+
+        System.out.println("\nв отделе " + dep4.getNameDepartment() + " работают следующие сотрудники: ");
+        System.out.println(dep4.getEmployees());
+
+        System.out.println("---------------------------------------------");
+        System.out.println("Кейс №5 - Холодков рядовой сотрудник в Департамент импортозамещения "
+                + " и его повысили до начальника этого департамента. "
+                + "\n При этом бывший его начальник уволился ");
+
+        employee72.dismissal();
+        dep4.setHead(employee74);
+
+        System.out.println(employee73);
+        System.out.println(employee74);
+
+        System.out.println("\nв отделе " + dep7.getNameDepartment() + " работают следующие сотрудники: ");
+        System.out.println(dep7.getEmployees());
+
+        System.out.println("\nв отделе " + dep4.getNameDepartment() + " работают следующие сотрудники: ");
+        System.out.println(dep4.getEmployees());
+
+
+        System.out.println("---------------------------------------------");
+        System.out.println("Кейс № - 6 Холодков начальник в Департаменте импортозамещения "
+                + " и он уволился ");
+
+        Employee employee75 = new Employee("Лапин", dep4);
+        Employee employee76 = new Employee("Турбин", dep4);
+        employee74.dismissal();
+
+        System.out.println(employee73);
+        System.out.println(employee74);
+
+        System.out.println("\nв отделе " + dep7.getNameDepartment() + " работают следующие сотрудники: ");
+        System.out.println(dep7.getEmployees());
+
+        System.out.println("\nв отделе " + dep4.getNameDepartment() + " работают следующие сотрудники: ");
+        System.out.println(dep4.getEmployees());
+
     }
-
-
-
-
 }

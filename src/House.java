@@ -1,5 +1,5 @@
 public class House {
-    final int floor;
+    private final int floor;
 
     public House(int floor) {
         if (floor < 1) {
@@ -7,6 +7,10 @@ public class House {
             + " т.е. больше нуля. При создании данного дома было указано число этажей: " + floor);
         }
         this.floor = floor;
+    }
+
+    public int getFloor() {
+        return floor;
     }
 
     @Override

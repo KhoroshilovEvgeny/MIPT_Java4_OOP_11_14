@@ -8,8 +8,6 @@ public class Employee {
         if (department != null) {
             this.department.addEmployee(this);
         }
-
-
     }
 
     public Employee(String name) {
@@ -18,10 +16,8 @@ public class Employee {
 
 
     public Employee(Employee employee) {
-        this (employee.getName(), employee.getDepartment() == null ? null : employee.getDepartment());
-
+        this (employee.getName());
     }
-
 
     public String getName() {
         return name;
@@ -31,17 +27,34 @@ public class Employee {
         this.name = name;
     }
 
+    //  метод, который возвращает департамент
     public Department getDepartment() {
         return department;
     }
 
+
     public void setDepartment(Department department) {
         // если этот сотрудник уже числится в другом департаменте, то в старом департамент убираем его из списка сотрудников
         if (this.department != null  && !this.department.getNameDepartment().isBlank()) {
-            this.department.employees.remove(this);
+            this.department.getEmployees().remove(this);
+            // если этот сотрудник еще и руководитель в другом департаменте, то в старом департаменте убираем его из списка сотрудников
+            // убираем его с должности руководителя
+            if (this.department.getHead() != null &&
+                this.department.getHead().getName()  != null &&
+                this.department.getHead().getName().equals(this.getName())) {
+                    this.department.setHead(null);
+            }
+
         }
         this.department = department;
-        this.department.employees.add(this);
+        if (department != null) {
+            this.department.addEmployee(this);
+        }
+
+    }
+
+    public void dismissal () {
+        this.setDepartment(null);
     }
 
     @Override
